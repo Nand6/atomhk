@@ -61,6 +61,15 @@
                         </x-navigation.navigation-item>
                     @endif
 
+                    @if(hasPermission('manage_wordfilter'))
+                        <x-navigation.navigation-item :classes="request()->routeIs('badges.*') ? 'active' : ''">
+                            <a href="{{ route('badges.index') }}">
+                                <x-icons.settings-icon/>
+                                <span>Badges Management</span>
+                            </a>
+                        </x-navigation.navigation-item>
+                    @endif
+
                     @if(hasPermission('manage_bans'))
                         <x-navigation.navigation-item :classes="request()->routeIs('bans.*') ? 'active' : ''">
                             <a href="{{ route('bans.index') }}">

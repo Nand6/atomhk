@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\BadgeController;
 use App\Http\Controllers\BansController;
 use App\Http\Controllers\CatalogPagesController;
 use App\Http\Controllers\CatalogPageSearchController;
@@ -61,6 +62,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/{article}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
         Route::put('/{article}/edit', [ArticleController::class, 'update'])->name('articles.update');
         Route::delete('/{article}/delete', [ArticleController::class, 'destroy'])->name('articles.destroy');
+    });
+
+    // Badge management
+    Route::prefix('badges')->group(function () {
+       Route::get('/', [BadgeController::class, 'index'])->name('badges.index');
+       Route::get('/create', [BadgeController::class, 'create'])->name('badges.create');
+       Route::post('/create', [BadgeController::class, 'store'])->name('badges.store');
     });
 
     // Wordfilter management
